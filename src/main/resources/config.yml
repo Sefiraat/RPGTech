@@ -1,0 +1,66 @@
+General:
+  Debug:
+    AllowPlacing: false
+    RequireCorrectTool: true
+  Leveling:
+    Leveling_Exp_Base: 20
+    Leveling_Exp_Growth: 0.1
+Skills:
+  # General level is calculated as the average of all skill levels.
+  # Every level goes from 1 to 100
+  Mining:
+    EXP_Values:
+      STONE: 1
+      COAL_ORE: 2
+      IRON_ORE: 3
+      GOLD_ORE: 4
+      REDSTONE_ORE: 4
+      LAPIS_ORE: 5
+      EMERALD_ORE: 10
+      DIAMOND_ORE: 10
+      NETHERRACK: 1
+      NETHER_QUARTZ_ORE: 3
+      NETHER_GOLD_ORE: 4
+      ANCIENT_DEBRIS: 20
+      END_STONE: 1
+  Lumbering:
+    EXP_Values:
+      OAK_LOG: 1
+      SPRUCE_LOG: 1
+      BIRCH_LOG: 1
+      JUNGLE_LOG: 1
+      ACACIA_LOG: 1
+      DARK_OAK_LOG: 1
+      CRIMSON_STEM: 2
+      WARPED_STEM: 2
+      MUSHROOM_STEM: 1
+  Digging:
+    EXP_Values:
+      GRASS_BLOCK: 2
+      DIRT: 1
+      COARSE_DIRT: 2
+      PODZOL: 3
+      MYCELIUM: 5
+      SAND: 1
+      RED_SAND: 4
+      SOUL_SAND: 3
+      GRAVEL: 3
+      CLAY: 5
+  Farming:
+    EXP_Values:
+      WHEAT: 2
+      BEETROOTS: 2
+      CARROT: 2
+      POTATO: 2
+      MELON: 3
+      PUMPKIN: 3
+      BAMBOO: 1
+      COCOA: 1
+      SUGAR_CANE: 1
+      SWEET_BERRY_BUSH: 2
+      CACTUS: 5
+      KELP_PLANT: 2
+      NETHER_WART_BLOCK: 3
+      CHORUS_PLANT: 4
+      CRIMSON_FUNGUS: 5
+
