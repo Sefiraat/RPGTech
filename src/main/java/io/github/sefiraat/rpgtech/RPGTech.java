@@ -1,7 +1,12 @@
 package io.github.sefiraat.rpgtech;
 
 import co.aikar.commands.PaperCommandManager;
+import com.google.common.collect.ImmutableList;
 import io.github.sefiraat.rpgtech.commands.Commands;
+import io.github.sefiraat.rpgtech.listeners.PlayerLoginListener;
+import io.github.sefiraat.rpgtech.listeners.SkillExpListeners;
+import io.github.sefiraat.rpgtech.listeners.SkillTriggerListener;
+import io.github.sefiraat.rpgtech.misc.config.ConfigGeneral;
 import io.github.sefiraat.rpgtech.timers.TimerSave;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -13,6 +18,7 @@ import org.bukkit.plugin.java.JavaPluginLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Timer;
 
 public class RPGTech extends JavaPlugin {
@@ -23,6 +29,8 @@ public class RPGTech extends JavaPlugin {
     private PaperCommandManager commandManager;
     private final Timer repeater = new Timer();
     private boolean isUnitTest = false;
+    private ConfigGeneral rpgConfig;
+    private final Random random = new Random();
 
 
     public File getRpgCorePlayerConfigFile() {
@@ -36,6 +44,12 @@ public class RPGTech extends JavaPlugin {
     }
     public RPGTech getInstance() {
         return instance;
+    }
+    public ConfigGeneral getRpgConfig() {
+        return rpgConfig;
+    }
+    public Random getRandom() {
+        return random;
     }
 
     public RPGTech() {
@@ -62,13 +76,18 @@ public class RPGTech extends JavaPlugin {
         instance = this;
 
         saveDefaultConfig();
-        createDankStorageConfig();
+        createRPGPlayerConfig();
+        rpgConfig = new ConfigGeneral(this.getInstance());
         registerCommands();
 
         repeater.schedule(new TimerSave(this.getInstance()),0, 30000);
 
+        new PlayerLoginListener(this.getInstance());
+        new SkillExpListeners(this.getInstance());
+        new SkillTriggerListener(this.getInstance());
+
         if (!isUnitTest) {
-            int pluginId = 11208;
+            int pluginId = 11304;
             Metrics metrics = new Metrics(this, pluginId);
         }
 
@@ -76,19 +95,36 @@ public class RPGTech extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        saveDankStorageConfig();
+        saveRPGPlayerConfig();
     }
 
     private void registerCommands() {
         commandManager = new PaperCommandManager(this.getInstance());
         commandManager.registerCommand(new Commands(this.getInstance()));
+
+        commandManager.getCommandCompletions().registerCompletion("MAST_MINING", c ->  ImmutableList.of(
+                "STONE",
+                "COAL_ORE",
+                "IRON_ORE",
+                "GOLD_ORE",
+                "REDSTONE_ORE",
+                "LAPIS_ORE",
+                "EMERALD_ORE",
+                "DIAMOND_ORE",
+                "NETHERRACK",
+                "NETHER_QUARTZ_ORE",
+                "NETHER_GOLD_ORE",
+                "ANCIENT_DEBRIS",
+                "END_STONE"
+        ));
+
     }
 
-    private void createDankStorageConfig() {
-        rpgCorePlayerConfigFile = new File(getDataFolder(), "DankStorages.yml");
+    private void createRPGPlayerConfig() {
+        rpgCorePlayerConfigFile = new File(getDataFolder(), "player_data.yml");
         if (!rpgCorePlayerConfigFile.exists()) {
             rpgCorePlayerConfigFile.getParentFile().mkdirs();
-            saveResource("DankStorages.yml", false);
+            saveResource("player_data.yml", false);
         }
         rpgCorePlayerConfig = new YamlConfiguration();
         try {
@@ -98,7 +134,7 @@ public class RPGTech extends JavaPlugin {
         }
     }
 
-    public void saveDankStorageConfig() {
+    public void saveRPGPlayerConfig() {
         try {
             rpgCorePlayerConfig.save(rpgCorePlayerConfigFile);
         } catch (IOException e) {

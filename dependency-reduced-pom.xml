@@ -71,6 +71,13 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <repositories>
@@ -181,7 +188,7 @@
   </dependencies>
   <properties>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <sonar.projectKey>Sefiraat_DankTech</sonar.projectKey>
+    <sonar.projectKey>Sefiraat_RPGTech</sonar.projectKey>
     <maven.compiler.source>1.8</maven.compiler.source>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

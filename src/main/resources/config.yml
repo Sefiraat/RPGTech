@@ -1,15 +1,14 @@
-General:
-  Debug:
-    AllowPlacing: false
-    RequireCorrectTool: true
-  Leveling:
-    Leveling_Exp_Base: 20
-    Leveling_Exp_Growth: 0.1
-Skills:
-  # General level is calculated as the average of all skill levels.
+GENERAL:
+    ALLOW_PLACED_BLOCKS: false
+    REQUIRE_CORRECT_TOOL: true
+LEVELING:
+    EXP_BASE: 20
+    EXP_GROWTH: 0.1
+SKILLS:
+  # ConfigGeneral level is calculated as the average of all skill levels.
   # Every level goes from 1 to 100
-  Mining:
-    EXP_Values:
+  MINING:
+    EXP_VALUES:
       STONE: 1
       COAL_ORE: 2
       IRON_ORE: 3
@@ -23,8 +22,28 @@ Skills:
       NETHER_GOLD_ORE: 4
       ANCIENT_DEBRIS: 20
       END_STONE: 1
-  Lumbering:
-    EXP_Values:
+    LEVELS:
+      DOUBLE_DROP_1: 5
+      HASTY_PICK_1: 10
+      HASTY_PICK_2: 25
+      HASTY_PICK_3: 55
+      HASTY_PICK_4: 80
+      LUCKY_PICK_1: 15
+      LUCKY_PICK_2: 35
+      LUCKY_PICK_3: 60
+      LUCKY_PICK_4: 85
+      PICK_CRAFTING_1: 20 # HASTY PICK 1
+      PICK_CRAFTING_2: 30 # HASTY PICK 2
+      PICK_CRAFTING_3: 40 # SMITHY PICK 1
+      PICK_CRAFTING_4: 70 # HASTY PICK 3
+      PICK_CRAFTING_5: 100 # Pick of Ur
+      XP_GAIN_1: 45
+      ARTIFACTS_1: 50
+      ARTIFACTS_2: 75
+      PICK_REPAIR: 65
+      PACK_1: 90
+  LUMBERING:
+    EXP_VALUES:
       OAK_LOG: 1
       SPRUCE_LOG: 1
       BIRCH_LOG: 1
@@ -34,8 +53,8 @@ Skills:
       CRIMSON_STEM: 2
       WARPED_STEM: 2
       MUSHROOM_STEM: 1
-  Digging:
-    EXP_Values:
+  DIGGING:
+    EXP_VALUES:
       GRASS_BLOCK: 2
       DIRT: 1
       COARSE_DIRT: 2
@@ -46,8 +65,8 @@ Skills:
       SOUL_SAND: 3
       GRAVEL: 3
       CLAY: 5
-  Farming:
-    EXP_Values:
+  FARMING:
+    EXP_VALUES:
       WHEAT: 2
       BEETROOTS: 2
       CARROT: 2
